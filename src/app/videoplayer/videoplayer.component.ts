@@ -11,7 +11,7 @@ import {
 })
 export class VideoplayerComponent {
 
-  videoSrc: string = "../../../video/video.mp4";
+  videoSrc: string = "../../../video/demovideo.mp4";
   progresstimer: string = "00:00"
   currentTimer: string = "00:00"
   videoDuration: string = "00:00"
