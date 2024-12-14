@@ -1,7 +1,9 @@
 .video_cont{
     position: relative;
-    width: 580px;
-    height: auto;
+    width: 589px;
+    outline: none;
+    border: none;
+    height: fit-content;
     aspect-ratio: 16/9;
     border-radius: 7px;
     background-color: rgb(0, 0, 0);
@@ -39,6 +41,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    transition: transform 0.1s linear, -ms-transform 0.1s linear;
+    -o-transition: -o-transform 0.1s linear;
+    -moz-transition: -moz-transform 0.1s linear;
+    -webkit-transition: -webkit-transform 0.1s linear;
 }
 .video_cont:hover .video_controler_cont{
     transform: translateY(0px);
@@ -54,10 +61,17 @@
     -moz-transform: translateY(0px);
     -webkit-transform: translateY(0px);
 }
+.video_controler_cont.hidden{
+    transform: translateY(80px);
+    -o-transform: translateY(80px);
+    -ms-transform: translateY(80px);
+    -moz-transform: translateY(80px);
+    -webkit-transform: translateY(80px);
+}
 .video_progress_cont{
     position: relative;
     width: 100%;
-    height: 6px;
+    height: 4px;
     background-color: rgb(255, 255, 255);
     cursor: pointer;
 }
@@ -73,12 +87,12 @@
 .progress_bar::after{
     content: "";
     position: absolute;
-    right: -7px;
+    right: -6px;
     opacity: 0;
     pointer-events: none;
     border-radius: 50%;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     background-color: blue;
     transition: opacity 0.1s linear;
     -o-transition: opacity 0.1s linear;
@@ -90,6 +104,7 @@
 }
 .progressTimer{
     position: absolute;
+    top: -28px;
     left: 50%;
     transform: translateX(-50%);
     -o-transform: translateX(-50%);
@@ -97,16 +112,19 @@
     -moz-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     opacity: 0;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #333;
     pointer-events: none;
     user-select: none;
-    top: -25px;
     font-family: sans-serif;
+    font-weight: 500;
     font-size: 14px;
     color: aliceblue;
-    transition: opacity 0.2s linear;
-    -o-transition: opacity 0.2s linear;
-    -moz-transition: opacity 0.2s linear;
-    -webkit-transition: opacity 0.2s linear;
+    transition: opacity 0.1s linear;
+    -o-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear;
+    -webkit-transition: opacity 0.1s linear;
 }
 .video_progress_cont:hover .progressTimer{
     opacity: 1 !important;
@@ -207,6 +225,7 @@ video{
     left: 0;
     width: 100%;
     height: 100%;
+    outline: none;
     border: none;
     display: flex;
     background-color: transparent;

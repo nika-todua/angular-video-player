@@ -1,5 +1,5 @@
-<div class="video_cont {{fullClass}}">
-
+<div class="video_cont {{fullClass}}" (mousemove)="mousemove($event)">
+    
     <div class="video_controler_cont {{controlerClass}}">
         <div class="video_progress_cont" (click)="timelineevent($event)" (mousemove)="timelineeventMousemove($event)">
             <div class="progressTimer" id="progressTimer">{{progresstimer}}</div>

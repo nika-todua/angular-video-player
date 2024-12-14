@@ -1,6 +1,4 @@
-import {
-  Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-videoplayer',
@@ -33,6 +31,7 @@ export class VideoplayerComponent {
     return hours ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;    
   }
   
+  consrolvisibleCount:number = 0
   
   togglePlayPause() {
     this.playpauseCount++
@@ -40,14 +39,22 @@ export class VideoplayerComponent {
     if(this.playpauseCount % 2 === 0) {
       this.isplaying = false
       videoElement.pause();
-      this.controlerClass = "show"
+      this.consrolvisibleCount = 1
     }else{
       this.isplaying = true
       videoElement.play();
-      this.controlerClass = ""
+      this.consrolvisibleCount = 0
     }
   }
 
+  mousemove(e: MouseEvent){
+    if(this.isplaying === true){
+      this.controlerClass = "hidden"
+    }
+    if(this.isplaying === false){
+      this.controlerClass = "show"
+    }
+  }
 
   timelineevent(e: any) {
     var mainVideo:any = document.querySelector('video') as HTMLVideoElement;
@@ -113,10 +120,11 @@ export class VideoplayerComponent {
 
         if (mainVideo.currentTime === mainVideo.duration) {
           mainVideo.currentTime = mainVideo.duration
-          this.isplaying = false
           this.controlerClass = "show"
+          this.isplaying = false
           mainVideo.pause();
           progressBar!.style.width = '100%';
+          mainVideo.currentTime = 0
         }
       });
 
@@ -126,17 +134,29 @@ export class VideoplayerComponent {
     })
 
     document.addEventListener("keyup", (e:any) => {
-      switch (e.code) {
-        case "Escape":
+      switch (e.key.toLowerCase()) {
+        case "escape":
           if (this.fullClass === "fullscreen") {
-            this.fullscreenCount = 0
-            this.fullscreenboll = false
             this.fullClass = ""
+            this.fullscreenboll = false
+            this.fullscreenCount = 0
           }
           break;
-        default:
+          case "arrowright":
+          if (this.isplaying === true) {
+            let mainVideo:any = document.querySelector('video') as HTMLVideoElement
+            mainVideo.currentTime += 5;
+          }
+          break;
+          case "arrowleft":
+          if (this.isplaying === true) {
+            let mainVideo:any = document.querySelector('video') as HTMLVideoElement
+            mainVideo.currentTime -= 5;
+          }
           break;
       }
+      
+      
     })
   }
 
